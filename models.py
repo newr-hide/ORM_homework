@@ -18,7 +18,7 @@ class Book(Base):
 
     id = alh.Column(alh.Integer, primary_key=True)
     title = alh.Column(alh.Text, nullable=False)
-    publisher_id = alh.Column(alh.Integer, alh.ForeignKey("publisher.id"), nullable=False)
+    id_publisher = alh.Column(alh.Integer, alh.ForeignKey("publisher.id"), nullable=False)
     publisher = relationship(Publisher, backref="book")
 
     def __str__(self):
@@ -38,9 +38,9 @@ class Stock(Base):
 
     id = alh.Column(alh.Integer, primary_key=True)
     count = alh.Column(alh.Integer, nullable=False)
-    book_id = alh.Column(alh.Integer, alh.ForeignKey("book.id"), nullable=False)
+    id_book = alh.Column(alh.Integer, alh.ForeignKey("book.id"), nullable=False)
     publisher = relationship(Book, backref="stock.id")
-    shop_id = alh.Column(alh.Integer, alh.ForeignKey("shop.id"), nullable=False)
+    id_shop = alh.Column(alh.Integer, alh.ForeignKey("shop.id"), nullable=False)
     shop = relationship(Shop, backref="stock.id")
 
     def __str__(self):
@@ -53,7 +53,7 @@ class Sale(Base):
     price = alh.Column(alh.Float, nullable=False)
     date_sale = alh.Column(alh.DateTime, nullable=False)
     count = alh.Column(alh.Integer, nullable=False)
-    stock_id = alh.Column(alh.Integer, alh.ForeignKey("stock.id"), nullable=False)
+    id_stock = alh.Column(alh.Integer, alh.ForeignKey("stock.id"), nullable=False)
     stock = relationship(Stock, backref="sale.id")
 
     def __str__(self):
