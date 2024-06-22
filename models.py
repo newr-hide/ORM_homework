@@ -22,7 +22,7 @@ class Book(Base):
     publisher = relationship(Publisher, backref="book")
 
     def __str__(self):
-        return f'{self.id}: {self.title} {self.publisher_id}'
+        return f'{self.id}: {self.title} {self.id_publisher}'
 
 class Shop(Base):
     __tablename__ = "shop"
@@ -44,7 +44,7 @@ class Stock(Base):
     shop = relationship(Shop, backref="stock.id")
 
     def __str__(self):
-        return f'{self.id}: {self.count} {self.book_id} {self.shop_id}'
+        return f'{self.id}: {self.count} {self.id_book} {self.id_shop}'
 
 class Sale(Base):
     __tablename__ = "sale"
@@ -57,7 +57,7 @@ class Sale(Base):
     stock = relationship(Stock, backref="sale.id")
 
     def __str__(self):
-        return f'{self.id}: {self.price} {self.date_sale} {self.count} {self.stock_id}'
+        return f'{self.id}: {self.price} {self.date_sale} {self.count} {self.id_stock}'
 
 
 
